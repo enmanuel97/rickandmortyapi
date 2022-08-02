@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Location;
 use App\Repositories\BaseRepository;
-use App\Models\Character;
 
 class LocationRepository extends BaseRepository
 {

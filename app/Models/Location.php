@@ -25,11 +25,14 @@ class Location extends Model
 
     public function getUrlAttribute()
     {
-        return route('locations.show', $this->id);
+        return route('location.show', $this->id);
     }
 
     public function getResidentsAttribute()
     {
-        return [];
+        $residents     = LocationResident::where('location_id', $this->id)->get();
+        return $residents->map(function($resident) {
+            return route('character.show', $resident->character_id);
+        });
     }
 }

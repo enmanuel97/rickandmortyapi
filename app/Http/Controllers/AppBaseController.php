@@ -5,19 +5,16 @@ use Exception;
 
 class AppBaseController extends Controller
 {
-    public function sendSuccess($message, $data = [])
+    public function convertData($result)
     {
-        return response()->json(array_merge([
-            'success' => true,
-            'message' => $message,
-        ], $data));
-    }
-
-    public function sendError(Exception $e, $data = [])
-    {
-        return response()->json(array_merge([
-            'success' => false,
-            'message' => $e->getMessage(),
-        ], $data), $e->getCode());
+        return [
+            'info' => [
+                "count" => $result['total'] ?? null,
+                "pages" => $result['last_page'] ?? null,
+                "next"  => $result['next_page_url'] ?? null,
+                "prev"  => $result['prev_page_url'] ?? null,
+            ],
+            'results' => $result['data'] ?? [],
+        ];
     }
 }

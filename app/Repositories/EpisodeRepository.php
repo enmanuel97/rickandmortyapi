@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Repositories\BaseRepository;
-use App\Models\Character;
+use App\Models\Episode;
 
 class EpisodeRepository extends BaseRepository
 {

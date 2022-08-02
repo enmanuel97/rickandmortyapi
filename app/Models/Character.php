@@ -35,8 +35,8 @@ class Character extends Model
         $origin = Location::find($this->origin_id);
 
         return [
-            'name'  => $origin->name,
-            'url'   => route('locations.show', $origin->id),
+            'name'  => $origin ? $origin->name : 'unknown',
+            'url'   => $origin ? route('location.show', $origin->id) : '',
         ];
     }
 
@@ -45,18 +45,21 @@ class Character extends Model
         $location = Location::find($this->location_id);
 
         return [
-            'name'  => $location->name,
-            'url'   => route('locations.show', $location->id),
+            'name'  => $location ? $location->name : 'unknown',
+            'url'   => $location ? route('location.show', $location->id) : '',
         ];
     }
 
     public function getUrlAttribute()
     {
-        return route('characters.show', $this->id);
+        return route('character.show', $this->id);
     }
 
     public function getEpisodeAttribute()
     {
-        return [];
+        $episodes       = CharacterEpisode::where('character_id', $this->id)->get();
+        return $episodes->map(function($episode) {
+            return route('episode.show', $episode->episode_id);
+        });
     }
 }

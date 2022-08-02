@@ -118,12 +118,11 @@ abstract class BaseRepository
     }
 
     /**
-     * @param int $userId
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getAll(int $userId)
+    public function getAll()
     {
-        return $this->model->where('user_id', $userId)->get();
+        return $this->model->paginate(2);
     }
     
     /**

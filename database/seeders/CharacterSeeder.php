@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Character;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class CharacterSeeder extends Seeder
@@ -26,6 +27,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 1,
                 'location_id'   => 3,
                 'image'         => '1.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 "name"          => "Morty Smith",
@@ -36,6 +38,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 0,
                 'location_id'   => 3,
                 'image'         => '2.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 "name"          => "Summer Smith",
@@ -46,6 +49,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 20,
                 'location_id'   => 20,
                 'image'         => '3.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 "name"          => "Beth Smith",
@@ -56,6 +60,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 20,
                 'location_id'   => 20,
                 'image'         => '4.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 "name"          => "Jerry Smith",
@@ -66,6 +71,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 20,
                 'location_id'   => 20,
                 'image'         => '5.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 "name"          => "Abadango Cluster Princess",
@@ -76,6 +82,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 2,
                 'location_id'   => 2,
                 'image'         => '6.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 "name"          => "Abradolf Lincler",
@@ -86,6 +93,7 @@ class CharacterSeeder extends Seeder
                 'origin_id'     => 20,
                 'location_id'   => 21,
                 'image'         => '7.jpeg',
+                'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
             ],
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,15 +22,23 @@ class Episode extends Model
         "deleted_at",
     ];
 
+    public function getAirDateAttribute($value) 
+    {
+        return Carbon::parse($value)->isoFormat('MMMM Do, YYYY');
+    }
+
     protected $appends = ['url', 'characters'];
 
     public function getUrlAttribute()
     {
-        return route('episodes.show', $this->id);
+        return route('episode.show', $this->id);
     }
 
     public function getCharactersAttribute()
     {
-        return [];
+        $characters     = CharacterEpisode::where('episode_id', $this->id)->get();
+        return $characters->map(function($character) {
+            return route('character.show', $character->character_id);
+        });
     }
 }

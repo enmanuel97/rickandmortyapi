@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/character', [\App\Http\Controllers\CharacterController::class, 'index']);
-Route::get('/character/{character}', [\App\Http\Controllers\CharacterController::class, 'show']);
+Route::get('/character/{character}', [\App\Http\Controllers\CharacterController::class, 'show'])->name('character.show');
 Route::get('/episode', [\App\Http\Controllers\EpisodeController::class, 'index']);
-Route::get('/episode/{episode}', [\App\Http\Controllers\EpisodeController::class, 'show']);
+Route::get('/episode/{episode}', [\App\Http\Controllers\EpisodeController::class, 'show'])->name('episode.show');
 Route::get('/location', [\App\Http\Controllers\LocationController::class, 'index']);
-Route::get('/location/{location}', [\App\Http\Controllers\LocationController::class, 'show']);
+Route::get('/location/{location}', [\App\Http\Controllers\LocationController::class, 'show'])->name('location.show');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {

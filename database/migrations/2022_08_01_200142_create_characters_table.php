@@ -18,11 +18,11 @@ class CreateCharactersTable extends Migration
             $table->string('name');
             $table->enum('status', ['Alive', 'Dead', 'unknown'])->default('unknown');
             $table->enum('species', ['Human', 'Alien', 'unknown'])->default('unknown');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->enum('gender', ['Male', 'Female', 'unknown'])->default('unknown');
-            $table->string('origin_id');
-            $table->string('location_id');
-            $table->string('image');
+            $table->string('origin_id')->default(0);
+            $table->string('location_id')->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

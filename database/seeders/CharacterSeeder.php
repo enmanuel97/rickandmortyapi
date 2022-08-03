@@ -16,8 +16,7 @@ class CharacterSeeder extends Seeder
     public function run()
     {
         Character::query()->truncate();
-
-        Character::query()->insert([
+        $characters = [
             [
                 "name"          => "Rick Sanchez",
                 "status"        => "Alive",
@@ -88,13 +87,18 @@ class CharacterSeeder extends Seeder
                 "name"          => "Abradolf Lincler",
                 "status"        => "unknown",
                 "species"       => "Human",
-                'type'          => 'Genetic experiment"',
+                'type'          => 'Genetic experiment',
                 'gender'        => 'Male',
                 'origin_id'     => 20,
                 'location_id'   => 21,
                 'image'         => '7.jpeg',
                 'created_at'    => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-        ]);
+            ]
+        ];
+
+        foreach ($characters as $character)
+        {
+            Character::create($character);
+        }
     }
 }

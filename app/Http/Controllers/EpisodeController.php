@@ -30,7 +30,7 @@ class EpisodeController extends AppBaseController
     public function store(EpisodeRequest $request)
     {
         try {
-            $this->episodeRepository->create($request->all());
+            $this->episodeRepository->create($request->only((new Episode)->getFillable()));
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -49,7 +49,7 @@ class EpisodeController extends AppBaseController
     public function update(EpisodeRequest $request, Episode $episode)
     {
         try {
-            $this->episodeRepository->update($request->all(), $episode);
+            $this->episodeRepository->update($request->only((new Episode)->getFillable()), $episode);
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

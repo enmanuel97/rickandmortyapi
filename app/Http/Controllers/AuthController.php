@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends AppBaseController
 {
-    public function login(LoginRequest $request): JsonResponse
+    public function login(LoginRequest $request)
     {
         try {
             $fields = $request->all();
@@ -24,12 +22,12 @@ class AuthController extends AppBaseController
 
             $token = $user->createToken('authToken')->plainTextToken;
 
-            return $this->sendSuccess("User logged in", [
-                'accessToken'   => $token,
-                'userData'      => $user,
+            return response()->json([
+                'token' => $token,
+                'user'  => $user,
             ]);
         } catch (Exception $e) {
-            return $this->sendError($e);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }

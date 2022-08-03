@@ -30,7 +30,7 @@ class CharacterController extends AppBaseController
     public function store(CharacterRequest $request)
     {
         try {
-            $this->characterRepository->create($request->all());
+            $this->characterRepository->create($request->only((new Character)->getFillable()));
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -49,7 +49,7 @@ class CharacterController extends AppBaseController
     public function update(CharacterRequest $request, Character $character)
     {
         try {
-            $this->characterRepository->update($request->all(), $character);
+            $this->characterRepository->update($request->only((new Character)->getFillable()), $character);
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

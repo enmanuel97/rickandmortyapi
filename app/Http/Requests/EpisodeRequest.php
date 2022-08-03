@@ -13,7 +13,7 @@ class EpisodeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class EpisodeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'      => 'required',
+            'air_date'  => 'required',
+            'episode'   => 'required',
         ];
     }
 }

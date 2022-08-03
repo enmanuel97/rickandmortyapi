@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/sign-in', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::get('/character', [\App\Http\Controllers\CharacterController::class, 'index']);
 Route::get('/character/{character}', [\App\Http\Controllers\CharacterController::class, 'show'])->name('character.show');
 Route::get('/episode', [\App\Http\Controllers\EpisodeController::class, 'index']);
@@ -25,7 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return $request->user();
     });
 
-    Route::apiResource('/character', 'CharacterController')->except(['index', 'show']);
-    Route::apiResource('/episode', 'EpisodeController')->except(['index', 'show']);
-    Route::apiResource('/location', 'LocationController')->except(['index', 'show']);
+    Route::apiResource('/character', \App\Http\Controllers\CharacterController::class)->except(['index', 'show']);
+    Route::apiResource('/episode', \App\Http\Controllers\EpisodeController::class)->except(['index', 'show']);
+    Route::apiResource('/location', \App\Http\Controllers\LocationController::class)->except(['index', 'show']);
 });

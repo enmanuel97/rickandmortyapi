@@ -30,7 +30,7 @@ class LocationController extends AppBaseController
     public function store(LocationRequest $request)
     {
         try {
-            $this->locationRepository->create($request->all());
+            $this->locationRepository->create($request->only((new Location)->getFillable()));
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -49,7 +49,7 @@ class LocationController extends AppBaseController
     public function update(LocationRequest $request, Location $location)
     {
         try {
-            $this->locationRepository->update($request->all(), $location);
+            $this->locationRepository->update($request->only((new Location)->getFillable()), $location);
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

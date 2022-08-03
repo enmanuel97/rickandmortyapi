@@ -13,7 +13,7 @@ class CharacterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class CharacterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'          => 'required',
+            'status'        => 'required|in:Alive,Dead,unknown',
+            'species'       => 'required|in:Human,Alien,unknown',
+            'gender'        => 'required|in:Male,Female,unknown',
+            'image'         => 'mimes:png,jpg,jpeg',
         ];
     }
 }
